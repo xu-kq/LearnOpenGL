@@ -7,7 +7,7 @@ set(CMAKE_TOOLCHAIN_FILE ${vcpkg_path}/scripts/buildsystems/vcpkg.cmake)
 
 set(CMAKE_CXX_STANDARD 11)
 project(test)
-add_executable(test "main.cpp")
+add_executable(test "main.cpp" "Shader.cpp")
 
 
 # glad
