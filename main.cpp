@@ -61,7 +61,6 @@ int main() {
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		ourShader.use();
-		ourShader.setFloat("xoffset", 1.0f);
 		//float timeValue = glfwGetTime();
 		//std::cout << timeValue << std::endl;
 		//float greenValue = sin(timeValue) / 2.0f + 0.5f;
