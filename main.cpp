@@ -110,6 +110,10 @@ int main() {
 	}
 	stbi_image_free(data);
 
+	// only has to be done once
+	ourShader.use();
+	glUniform1i(glGetUniformLocation(ourShader.ID, "texture1"), 0);
+	glUniform1i(glGetUniformLocation(ourShader.ID, "texture2"), 1);
 
 
 	while (!glfwWindowShouldClose(window)) {
@@ -118,10 +122,12 @@ int main() {
 		glClear(GL_COLOR_BUFFER_BIT);
 
 
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, texture1);
+		glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, texture2);
 
 		ourShader.use();
-		glUniform1i(glGetUniformLocation(ourShader.ID, "texture1"), 0);
-		glUniform1i(glGetUniformLocation(ourShader.ID, "texture2"), 1);
 		glBindVertexArray(VAO);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
