@@ -140,7 +140,7 @@ int main() {
 		ourShader.setFloat("mixValue", mixValue);
 
 		glm::mat4 trans(1.0);
-		trans = glm::translate(trans, glm::vec3(0.5f, -0.5f, 0.f));
+		trans = glm::translate(trans, glm::vec3(0.5f, -0.5f, 0.f)); // a right operator
 		trans = glm::rotate(trans, (float)glfwGetTime(), glm::vec3(0.f, 0.f, 1.f));
 
 		ourShader.use();
