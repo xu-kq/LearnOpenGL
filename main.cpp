@@ -146,7 +146,15 @@ int main() {
 		ourShader.use();
 		unsigned int transformLoc = glGetUniformLocation(ourShader.ID, "transform");
 		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
+		glBindVertexArray(VAO);
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
+		trans = glm::mat4(1.0);
+		trans = glm::translate(trans, glm::vec3(-0.5f, 0.5f, 0.f)); // a right operator
+		float scale_factor = (1.0f + static_cast<float>(sin(glfwGetTime()))) / 2;
+		trans = glm::scale(trans,  scale_factor * glm::vec3(1.f, 1.f, 0.f));
+
+		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
 		glBindVertexArray(VAO);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
