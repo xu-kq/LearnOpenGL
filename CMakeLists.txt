@@ -6,15 +6,19 @@ set(CMAKE_TOOLCHAIN_FILE ${vcpkg_path}/scripts/buildsystems/vcpkg.cmake)
 
 
 set(CMAKE_CXX_STANDARD 11)
-project(test)
-add_executable(test "main.cpp" "Shader.cpp" "stb_image.h" "stb_image.cpp")
+project(Render)
+add_executable(Render "main.cpp" "Shader.cpp" "stb_image.h" "stb_image.cpp")
 
 
 # glad
 find_package(glad CONFIG REQUIRED)
-target_link_libraries(test PRIVATE glad::glad)
+target_link_libraries(Render PRIVATE glad::glad)
 
 
 # glfw3
 find_package(glfw3 CONFIG REQUIRED)
-target_link_libraries(test PRIVATE  glfw)
+target_link_libraries(Render PRIVATE  glfw)
+
+# glm
+find_package(glm CONFIG REQUIRED)
+target_link_libraries(Render PRIVATE glm::glm)

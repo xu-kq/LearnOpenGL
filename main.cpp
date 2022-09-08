@@ -1,6 +1,10 @@
 #include<glad/glad.h>
 #include<GLFW/glfw3.h>
 
+#include<glm/glm.hpp>
+#include<glm/gtc/matrix_transform.hpp>
+#include<glm/gtc/type_ptr.hpp>
+
 #include<iostream>
 
 #include"Shader.hpp"
@@ -75,8 +79,8 @@ int main() {
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture1);
 
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	
@@ -117,6 +121,11 @@ int main() {
 	glUniform1i(glGetUniformLocation(ourShader.ID, "texture2"), 1);
 
 
+
+
+
+
+
 	while (!glfwWindowShouldClose(window)) {
 		processInput(window);
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -130,7 +139,14 @@ int main() {
 
 		ourShader.setFloat("mixValue", mixValue);
 
+		glm::mat4 trans(1.0);
+		trans = glm::translate(trans, glm::vec3(0.5f, -0.5f, 0.f));
+		trans = glm::rotate(trans, (float)glfwGetTime(), glm::vec3(0.f, 0.f, 1.f));
+
 		ourShader.use();
+		unsigned int transformLoc = glGetUniformLocation(ourShader.ID, "transform");
+		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
+
 		glBindVertexArray(VAO);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
