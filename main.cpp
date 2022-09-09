@@ -165,7 +165,7 @@ int main()
         // activate shader
         lightShader.use();
 
-        lightPos = glm::vec3(1.2f, float(sin(glfwGetTime()) * 2.f), 2.f *float(cos(glfwGetTime())));
+        //lightPos = glm::vec3(1.2f, float(sin(glfwGetTime()) * 2.f), 2.f *float(cos(glfwGetTime())));
 
         // pass projection matrix to shader (note that in this case it could change every frame)
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
