@@ -183,22 +183,17 @@ int main()
 
         lightShader.setVec3("light.position", lightPos);
         lightShader.setVec3("viewPos", camera.Position);
+        		
+        lightShader.setVec3("material.ambient", glm::vec3(0.0f, 0.1f, 0.06f));
+        lightShader.setVec3("material.diffuse", glm::vec3(0, 0.50980392,0.50980392));
+        lightShader.setVec3("material.specular", glm::vec3(0.50196078, 0.50196078, 0.50196078));
+        lightShader.setFloat("material.shininess", .25);
 
-        lightShader.setVec3("material.ambient", glm::vec3(1.0f, 0.5f, 0.31f));
-        lightShader.setVec3("material.diffuse", glm::vec3(1.0f, 0.5f, 0.31f));
-        lightShader.setVec3("material.specular", glm::vec3(0.5f, 0.5f, 0.5f));
-        lightShader.setFloat("material.shininess", 32.0f);
-
-        glm::vec3 lightColor;
-        lightColor.x = sin(glfwGetTime() * 2.0f);
-        lightColor.y = sin(glfwGetTime() * 0.7f);
-        lightColor.z = sin(glfwGetTime() * 1.3f);
         
-        glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f);
-        glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f);
 
-        lightShader.setVec3("light.ambient", ambientColor);
-        lightShader.setVec3("light.diffuse", diffuseColor); // darken diffuse light a bit
+
+        lightShader.setVec3("light.ambient", glm::vec3(1.0f, 1.0f, 1.0f));
+        lightShader.setVec3("light.diffuse", glm::vec3(1.0f, 1.0f, 1.0f)); // darken diffuse light a bit
         lightShader.setVec3("light.specular", glm::vec3(1.0f, 1.0f, 1.0f));
 
 
@@ -216,7 +211,7 @@ int main()
         lightCubeShader.setMat4("view", view);
         lightCubeShader.setMat4("projection", projection);
 
-        lightCubeShader.setVec3("light.diffuse", diffuseColor); // darken diffuse light a bit
+        lightCubeShader.setVec3("light.diffuse", glm::vec3(1.0, 1.0, 1.0)); // darken diffuse light a bit
 
 
         glDrawArrays(GL_TRIANGLES, 0, 36);
