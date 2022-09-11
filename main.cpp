@@ -215,6 +215,10 @@ int main()
         lightCubeShader.setMat4("model", model);
         lightCubeShader.setMat4("view", view);
         lightCubeShader.setMat4("projection", projection);
+
+        lightCubeShader.setVec3("light.diffuse", diffuseColor); // darken diffuse light a bit
+
+
         glDrawArrays(GL_TRIANGLES, 0, 36);
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
