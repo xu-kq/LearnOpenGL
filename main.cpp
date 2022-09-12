@@ -146,11 +146,12 @@ int main()
     glEnableVertexAttribArray(0);
 
     unsigned int diffuseMap = loadTexture("../../../images/container2.png");
-    unsigned int specularMap = loadTexture("../../../images/lighting_maps_specular_color.png");
+    unsigned int specularMap = loadTexture("../../../images/container2_specular.png");
+    unsigned int emissionMap = loadTexture("../../../images/matrix.jpg");
     lightShader.use();
     lightShader.setInt("material.diffuse", 0);
     lightShader.setInt("material.specular", 1);
-
+    lightShader.setInt("material.emission", 2);
 
     // render loop
     // -----------
@@ -210,6 +211,9 @@ int main()
 
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, specularMap);
+
+        glActiveTexture(GL_TEXTURE2);
+        glBindTexture(GL_TEXTURE_2D, emissionMap);
 
         glDrawArrays(GL_TRIANGLES, 0, 36);
 
