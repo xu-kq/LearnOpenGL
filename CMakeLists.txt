@@ -7,7 +7,7 @@ set(CMAKE_TOOLCHAIN_FILE ${vcpkg_path}/scripts/buildsystems/vcpkg.cmake)
 
 set(CMAKE_CXX_STANDARD 11)
 project(Render)
-add_executable(Render "main.cpp" "Shader.cpp")
+add_executable(Render "main.cpp" "Shader.cpp" "stb_image.cpp")
 
 
 # glad
