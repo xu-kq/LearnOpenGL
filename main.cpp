@@ -162,8 +162,14 @@ int main()
     unsigned int diffuseMap = loadTexture("../../../images/container2.png");
     unsigned int specularMap = loadTexture("../../../images/container2_specular.png");
     lightShader.use();
+    lightShader.setVec3("light.direction", glm::vec3(-0.2f, -1.0f, -0.3f));
     lightShader.setInt("material.diffuse", 0);
     lightShader.setInt("material.specular", 1);
+
+
+    lightShader.setFloat("light.constant", 1.0f);
+    lightShader.setFloat("light.linear", 0.09f);
+    lightShader.setFloat("light.quadratic", 0.032f);
 
     // render loop
     // -----------
@@ -205,8 +211,7 @@ int main()
         lightShader.setMat4("view", view);
         lightShader.setMat4("projection", projection);
 
-        //lightShader.setVec3("light.position", lightPos);
-        lightShader.setVec3("light.direction", glm::vec3(-0.2f, -1.0f, -0.3f));
+        lightShader.setVec3("light.position", lightPos);
 
         lightShader.setVec3("viewPos", camera.Position);
         		
@@ -226,7 +231,8 @@ int main()
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, specularMap);
 
-a
+        //glActiveTexture(GL_TEXTURE2);
+        //glBindTexture(GL_TEXTURE_2D, emissionMap);
 
         for (unsigned int i = 0; i < 10; i++)
         {
