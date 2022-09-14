@@ -19,6 +19,8 @@ public:
 	void setBool(const std::string& name, bool value) const;
 	void setInt(const std::string& name, int value) const;
 	void setFloat(const std::string& name, float value) const;
-	void Shader::setVec3(const std::string& name, const glm::vec3& vec) const;
+	void setVec3(const std::string& name, const glm::vec3& vec) const;
+	void setVec3(const std::string& name, const float v1, const float v2, const float v3) const;
+
 	void setMat4(const std::string& name, const glm::mat4&) const;
 };
